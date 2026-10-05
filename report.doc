@@ -1,0 +1,80 @@
+📝 Notebook note
+
+Write:
+
+Creating a 3D object in Three.js
+Geometry
+   +
+Material
+   ↓
+Mesh
+   ↓
+scene.add(mesh)
+
+Example:
+
+const geometry = new THREE.BoxGeometry(4, 0.5, 1);
+
+const material = new THREE.MeshBasicMaterial({
+    color: 0x8B4513
+});
+
+const object = new THREE.Mesh(
+    geometry,
+    material
+);
+
+scene.add(object);
+One important change from our cube
+
+Previously we had:
+
+cube.rotation.x += 0.01;
+
+We removed that.
+
+Why?
+
+Because the support should stay still.
+
+Later, we'll create a separate pivot object that rotates. The rod and bob will become children of that pivot.
+
+That will demonstrate the transformation hierarchy we studied.
+
+Support
+   │
+   └── Pivot
+        │
+        └── Rod
+             │
+             └── Bob
+
+That's where our pendulum starts becoming an actual graphics project rather than just a collection of shapes.
+
+Checkpoint
+
+Run the code and make sure you can see the brown support bar.
+
+Once you see it, we'll add the pivot + rod next.
+
+📝 Notebook
+
+Write this:
+
+Transformation hierarchy
+
+A parent object can contain child objects. Transformations applied to the parent can affect its children.
+
+Example:
+
+const parent = new THREE.Group();
+
+parent.add(child);
+
+For our pendulum:
+
+Pivot
+ └── Rod
+      └── Bob
+
+Next: we'll add the pendulum bob (weight) at the bottom. Then we'll finally make the whole thing swing.
